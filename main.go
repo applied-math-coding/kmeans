@@ -26,7 +26,7 @@ func main() {
 	}
 	fmt.Println(image.Bounds())
 
-	means := kmeans.Kmeans(10, image, nil, 0.0, 0, 10, 0.5)
+	means := kmeans.Kmeans(5, image, nil, 0.0, 0, 10, 0.5)
 	// means := hist(image, 10)  // this is a smarter alternative to kmeans for this specific case
 
 	transformAndSave(image, means)
