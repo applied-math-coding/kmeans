@@ -13,20 +13,6 @@ import (
 	"sort"
 )
 
-/**
-TODO
-- always put pointers into maps, since a map is always accessed by value, that is:  m[i] actually
-returns a copy of the value stored at index i.
-- common pattern for parallelization, but ensure to synchronize shared resources and not to run into deadlocks
-- go shines in the ability to easily create computations distributed across multiple cors
-- rather than in python or js, it is very easy to produce accidental deadlocks
-- you utilize all cores ensure to have set: 	runtime.GOMAXPROCS(runtime.NumCPU())
-- go is not a languege which is for fast protyping, for this typscript is more suited
-- also go lacks many syntax sugar and patterns availabel to TS which makes it less suitable for business logic implementation
- and large code-bases.
-- a match faster solution with similar outcome is the hist method
-*/
-
 func main() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
 	imageFile, errOpen := os.Open("cloud.jpg")
@@ -41,7 +27,7 @@ func main() {
 	fmt.Println(image.Bounds())
 
 	means := kmeans.Kmeans(10, image, nil, 0.0, 0, 10, 0.5)
-	// means := hist(image, 10)
+	// means := hist(image, 10)  // this is a smarter alternative to kmeans for this specific case
 
 	transformAndSave(image, means)
 	fmt.Println(means)
